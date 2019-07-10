@@ -1,0 +1,28 @@
+﻿@model WebFileEditor.Models.TextEditorViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="fileUpload" style="margin-top: 15px;margin-bottom: 15px;" />
+    <input type="submit" name="Submit" id="Submit" value="Upload" />
+}
+
+@using (Html.BeginForm("Edit", "Edit", FormMethod.Post))
+{
+    <div class="row" style="margin-top: 15px;">
+        <div class="form-group col-md-12">
+            @if (Model != null)
+            {
+                <label for="comment">Archivo:</label>
+                @Html.TextArea("comment", Model.DisplayText, new { @class = "form-control", @style = "height: 600px;" })
+                <input type="submit" name="Submit" id="Submit" value="Guardar/Exportar" style="margin-top: 20px;" />
+                @Html.ActionLink("Editar otro archivo", "Index", "Home")
+            }
+        </div>
+    </div>
+}
+
+
+
